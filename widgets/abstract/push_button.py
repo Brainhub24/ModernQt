@@ -18,8 +18,8 @@ class PushButton(QPushButton):
     ) -> None:
         super().__init__(__parent)
 
-        self.setStyleSheet(Loader.load_file("./widgets/push_button.css"))
-        self.setFixedSize(QSize(*size))
+        self.setStyleSheet(Loader.load_file("./widgets/abstract/styles/push_button.css"))
+        self.setMinimumSize(QSize(*size))
 
         if text is not None:
             self.setText(text)

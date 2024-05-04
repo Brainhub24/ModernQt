@@ -5,8 +5,7 @@ from PySide6.QtCore import Qt
 
 import sys
 
-from widgets import PushButton
-from src.core import ManageTheme
+from widgets import PushButton, WidgetsList
 
 
 class MainWindow(QWidget):
@@ -16,8 +15,13 @@ class MainWindow(QWidget):
         self.resize(1000, 600)
         self.setStyleSheet("background-color: #fbfbfb")
 
+        self.widgetsList = WidgetsList()
+        self.widgetsList.add_widget(PushButton(text="1"))
+        self.widgetsList.add_widget(PushButton(text="2"))
+
         self.mainLayout = QHBoxLayout()
-        self.mainLayout.addWidget(PushButton(text="Button"), Qt.AlignmentFlag.AlignCenter)
+        self.mainLayout.addWidget(self.widgetsList)
+        self.mainLayout.addWidget(PushButton(text="Button"), alignment=Qt.AlignmentFlag.AlignCenter)
         self.setLayout(self.mainLayout)
 
 

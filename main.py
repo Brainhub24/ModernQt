@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import (
-    QApplication, QWidget, QHBoxLayout
+    QApplication, QWidget, QHBoxLayout, QLabel
 )
 from PySide6.QtCore import Qt
 
@@ -16,8 +16,11 @@ class MainWindow(QWidget):
         self.setStyleSheet("background-color: #fbfbfb")
 
         self.widgetsList = WidgetsList()
-        self.widgetsList.add_widget(PushButton(text="1"))
-        self.widgetsList.add_widget(PushButton(text="2"))
+        self.widgetsList.addItem("Breakfast")
+        self.widgetsList.addItem("Breakfast")
+        self.widgetsList.addItem("Breakfast")
+        # self.widgetsList.add_widget(QLabel("Breakfast"))
+
 
         self.mainLayout = QHBoxLayout()
         self.mainLayout.addWidget(self.widgetsList)

@@ -1,0 +1,16 @@
+QListWidget#widget-list {
+    outline: none;
+    border-radius: 6px;
+    padding: 3px;
+    border: 1px solid gray;
+}
+
+QListWidget#widget-list::item {
+    outline: none;
+    color: #a3a3a3;
+}
+
+QListWidget#widget-list::item:selected {
+    background-color: #deeaff;
+    color: #0166fc;
+}

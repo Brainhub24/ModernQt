@@ -26,4 +26,5 @@ from ModernQt.widgets import PushButton
 ...
 ```
 
+<h3>Example</h3>
 <img src="example.png">

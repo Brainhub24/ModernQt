@@ -15,6 +15,7 @@ class MainWindow(QWidget):
         super().__init__()
 
         self.setWindowIcon(QIcon("Icon.png"))
+        self.setWindowTitle("ModernQt")
 
         self.resize(1000, 600)
         self.setStyleSheet("background-color: #fbfbfb")

@@ -80,7 +80,8 @@ class DropDownMenu(QComboBox):
 
         if stylesheet is not None:
             self.setStyleSheet(
-                Loader.load_file("./widgets/basic/styles/drop_down_menu.css") + stylesheet
+                Loader.load_file("./widgets/basic/styles/drop_down_menu.css") + "\n" 
+                + "QComboBox#drop-down-menu {" + stylesheet + "}\n"
             )
         else:
             self.setStyleSheet(Loader.load_file("./widgets/basic/styles/drop_down_menu.css"))
@@ -120,7 +121,8 @@ class Entry(QLineEdit):
 
         if stylesheet is not None:
             self.setStyleSheet(
-                Loader.load_file("./widgets/basic/styles/entry.css") + stylesheet
+                Loader.load_file("./widgets/basic/styles/entry.css") + "\n" 
+                + "QLineEdit#entry {" + stylesheet + "}\n"
             )
         else:
             self.setStyleSheet(Loader.load_file("./widgets/basic/styles/entry.css"))
@@ -155,7 +157,8 @@ class DigitalEntry(QSpinBox):
 
         if stylesheet is not None:
             self.setStyleSheet(
-                Loader.load_file("./widgets/basic/styles/digital-entry.css") + stylesheet
+                Loader.load_file("./widgets/basic/styles/digital-entry.css") + "\n" 
+                + "QSpinBox#digital-entry {" + stylesheet + "}\n"
             )
         else:
             self.setStyleSheet(Loader.load_file("./widgets/basic/styles/digital-entry.css"))
@@ -191,7 +194,8 @@ class PathEntry(QWidget):
         
         if stylesheet is not None:
             self.setStyleSheet(
-                Loader.load_file("scr/interface/basic/styles/splitter.css") + stylesheet
+                Loader.load_file("./widgets/basic/styles/entry.css") + "\n" 
+                + "QLineEdit#path-entry {" + stylesheet + "}\n"
             )
         else:
             self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/splitter.css"))

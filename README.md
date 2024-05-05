@@ -25,3 +25,5 @@ git clone https://github.com/chebupelka8/ModernQt
 from ModernQt.widgets import PushButton
 ...
 ```
+
+<img src="example.png">

@@ -1,4 +1,4 @@
-QPushButton {
+QPushButton#button {
     background-color: #405cf5;
     padding: 5px;
     color: white;
@@ -7,10 +7,10 @@ QPushButton {
     outline: none;
 }
 
-QPushButton:hover {
+QPushButton#button:hover {
     background-color: #3045B8;
 }
 
-QPushButton:pressed {
+QPushButton#button:pressed {
     background-color: #283A9A;
 }

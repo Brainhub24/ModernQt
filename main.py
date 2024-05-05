@@ -17,7 +17,6 @@ class MainWindow(QWidget):
         self.setStyleSheet("background-color: #fbfbfb")
 
         self.widgetsList = WidgetsList()
-        print(Font.get_all_font_families())
 
         self.mainLayout = QHBoxLayout()
         self.mainLayout.addWidget(self.widgetsList)

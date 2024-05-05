@@ -33,6 +33,8 @@ class Splitter(QSplitter):
         if __orientation == "horizontal": super().__init__(Qt.Orientation.Horizontal, parent)
         elif __orientation == "vertical": super().__init__(Qt.Orientation.Vertical, parent)
 
+        self.setObjectName("splitter")
+
         if stylesheet is not None:
             self.setStyleSheet(
                 Loader.load_file("scr/interface/basic/styles/splitter.css") + stylesheet
@@ -68,9 +70,9 @@ class DropDownMenu(QComboBox):
         self.view().setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.__values = []
 
-        if values is not None:
-            self.__values = [*values]
+        if values is not None: self.__values = [*values]
         self.addItems(self.__values)
+        self.setObjectName("drop-down-menu")
 
         if stylesheet is not None:
             self.setStyleSheet(
@@ -106,6 +108,7 @@ class Entry(QLineEdit):
         self.setFixedSize(QSize(*size))
         if placed is not None: self.setText(placed)
         if placeholder is not None: self.setPlaceholderText(placeholder)
+        self.setObjectName("entry")
 
         if stylesheet is not None:
             self.setStyleSheet(
@@ -137,6 +140,7 @@ class DigitalEntry(QSpinBox):
         self.setFixedSize(QSize(*size))
         if not show_buttons: self.setButtonSymbols(QSpinBox.ButtonSymbols.NoButtons)
 
+        self.setObjectName("digital-entry")
         self.setRange(*range)
 
         if stylesheet is not None:
@@ -171,7 +175,7 @@ class PathEntry(QWidget):
     ) -> None:
         super().__init__(parent)
 
-        self.setObjectName("path-entry-widget")
+        self.setObjectName("path-entry")
         if stylesheet is not None:
             self.setStyleSheet(
                 Loader.load_file("scr/interface/basic/styles/splitter.css") + stylesheet

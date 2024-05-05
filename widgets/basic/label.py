@@ -9,7 +9,7 @@ class Text:
     def label(
             __text: str, font_family: str, font_size: int,
             bold: bool = False, italic: bool = False,
-            color: str = "#ffffff", word_wrap: bool = False
+            color: str = "#000000", word_wrap: bool = False
     ) -> QLabel:
         label = QLabel(__text)
         label.setStyleSheet(f"color: {color}")

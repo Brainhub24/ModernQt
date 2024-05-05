@@ -14,13 +14,20 @@ class PushButton(QPushButton):
             self, 
             text: Optional[str] = None,
             size: tuple[int, int] = (100, 25),
-            stylesheet: Optional[str] = None,
             *,
+            stylesheet: Optional[str] = None,
             parent: Optional["QWidget"] = None, 
     ) -> None:
         super().__init__(parent)
 
-        self.setStyleSheet(Loader.load_file("./widgets/basic/styles/push_button.css"))
+        if stylesheet is not None:
+            self.setStyleSheet(
+                Loader.load_file("./widgets/basic/styles/button.css") + stylesheet
+            )
+        else:
+            self.setStyleSheet(Loader.load_file("./widgets/basic/styles/button.css")) # ./widgets/basic/styles/push_button.css
+        
+        self.setObjectName("button")
         self.setMinimumSize(QSize(*size))
 
         if text is not None:

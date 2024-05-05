@@ -19,7 +19,12 @@ class Font:
         return sorted(system_fonts)
     
     @staticmethod
-    def get_font_by_path(__path: str, __size: int, __bold: bool = False, __italic: bool = False) -> QFont:
+    def get_font_by_path(
+        __path: str, 
+        __size: int, 
+        __bold: bool = False, 
+        __italic: bool = False
+    ) -> QFont:
         """
         Load a font from a specific path with the given size, boldness, and italic style.
 

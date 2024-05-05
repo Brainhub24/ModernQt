@@ -1,9 +1,17 @@
 import os.path
 
-from PySide6.QtWidgets import QSplitter, QComboBox, QSpinBox, QLineEdit, QWidget, QHBoxLayout, QSpacerItem, QSizePolicy
+from PySide6.QtWidgets import (
+    QSplitter, QComboBox, QSpinBox, 
+    QLineEdit, QWidget, QHBoxLayout, 
+    QSpacerItem, QSizePolicy
+)
 from PySide6.QtCore import Qt, QSize
 
 from src.core import Loader, FileDialog
+
+from typing import Optional
+
+from widgets.basic.button import PushButton
 
 
 class Splitter(QSplitter):
@@ -15,11 +23,22 @@ class Splitter(QSplitter):
     - addWidget(widget): None - Adds a widget to the splitter and sets it as non-collapsible.
     """
 
-    def __init__(self, __orientation: str, *, parent=None) -> None:
+    def __init__(
+            self, 
+            __orientation: str, 
+            size: tuple[int, int] = (30, 25),
+            stylesheet: Optional[str] = None,
+            *, parent: Optional["QWidget"] = None
+    ) -> None:
         if __orientation == "horizontal": super().__init__(Qt.Orientation.Horizontal, parent)
         elif __orientation == "vertical": super().__init__(Qt.Orientation.Vertical, parent)
 
-        self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/splitter.css"))
+        if stylesheet is not None:
+            self.setStyleSheet(
+                Loader.load_file("scr/interface/basic/styles/splitter.css") + stylesheet
+            )
+        else:
+            self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/splitter.css"))
 
     def addWidget(self, widget):
         super().addWidget(widget)
@@ -87,43 +106,45 @@ class DigitalEntry(QSpinBox):
         self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/digital_entry.css"))
 
 
-# class PathEntry(QWidget):
-#     """
-#     Custom QLineEdit widget for entering path to file and directories.
+class PathEntry(QWidget):
+    """
+    Custom QLineEdit widget for entering path to file and directories.
 
-#     Methods:
-#     - __init__(self, __placed: str, placeholder: str = "", width: int = 400, height: int = 25): None - Initializes the path entry with default text and placeholder.
-#     - get_entry(self): Entry - returns the Entry widget.
-#     - set_path(self, __path: str, only_existing: bool = True): None if only_existing is True and path is not exist this path won't be pasted.
+    Methods:
+    - __init__(self, __placed: str, placeholder: str = "", width: int = 400, height: int = 25): None - Initializes the path entry with default text and placeholder.
+    - get_entry(self): Entry - returns the Entry widget.
+    - set_path(self, __path: str, only_existing: bool = True): None if only_existing is True and path is not exist this path won't be pasted.
 
-#     Notes:
-#     - This widget includes Entry and PushButton to specify the path to your file or directory
-#     """
+    Notes:
+    - This widget includes Entry and PushButton to specify the path to your file or directory
+    """
 
-#     def __init__(self, __placed: str = "", placeholder: str = "", width: int = 400, height: int = 25) -> None:
-#         super().__init__()
+    def __init__(self, __placed: str = "", placeholder: str = "", width: int = 400, height: int = 25) -> None:
+        super().__init__()
 
-#         self.setObjectName("path-entry-widget")
-#         self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/path_entry.css"))
+        self.setObjectName("path-entry-widget")
+        self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/path_entry.css"))
 
-#         self.mainLayout = QHBoxLayout()
+        self.mainLayout = QHBoxLayout()
 
-#         self.pathEntry = Entry(__placed, placeholder, width, height)
+        self.pathEntry = Entry(__placed, placeholder, width, height)
 
-#         self.specifyPathBtn = DefaultButton("...", width=25)
-#         self.specifyPathBtn.clicked.connect(lambda: self.set_path(FileDialog.get_open_file_name()))
+        self.specifyPathBtn = PushButton("...")
+        self.specifyPathBtn.clicked.connect(lambda: self.set_path(FileDialog.get_open_file_name()))
 
-#         self.mainLayout.addWidget(self.pathEntry)
-#         self.mainLayout.addWidget(self.specifyPathBtn)
-#         self.mainLayout.addItem(QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
-#         self.setLayout(self.mainLayout)
+        self.mainLayout.addWidget(self.pathEntry)
+        self.mainLayout.addWidget(self.specifyPathBtn)
+        self.mainLayout.addItem(QSpacerItem(20, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
+        self.setLayout(self.mainLayout)
 
-#     def set_path(self, __path: str, only_existing: bool = True) -> None:
-#         if only_existing and os.path.exists(__path):
-#             self.pathEntry.setText(__path)
-#             return
+    def set_path(self, __path: Optional[str] = None, only_existing: bool = True) -> None:
+        if __path is None: return
 
-#         self.pathEntry.setText(__path)
+        if only_existing and os.path.exists(__path):
+            self.pathEntry.setText(__path)
+            return
 
-#     def get_entry(self) -> Entry:
-#         return self.pathEntry
+        self.pathEntry.setText(__path)
+
+    def get_entry(self) -> Entry:
+        return self.pathEntry

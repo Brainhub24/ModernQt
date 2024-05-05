@@ -12,12 +12,13 @@ if TYPE_CHECKING:
 class PushButton(QPushButton):
     def __init__(
             self, 
-            __parent: Optional["QWidget"] = None, 
             text: Optional[str] = None,
             size: tuple[int, int] = (100, 25),
-            stylesheet: Optional[str] = None
+            stylesheet: Optional[str] = None,
+            *,
+            parent: Optional["QWidget"] = None, 
     ) -> None:
-        super().__init__(__parent)
+        super().__init__(parent)
 
         self.setStyleSheet(Loader.load_file("./widgets/basic/styles/push_button.css"))
         self.setMinimumSize(QSize(*size))

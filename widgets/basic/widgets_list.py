@@ -15,12 +15,13 @@ if TYPE_CHECKING:
 class WidgetsList(QFrame):
     def __init__(
             self, 
-            __parent: Optional["QWidget"] = None, 
             size: tuple[int, int] = (600, 400),
             title: Optional[str] = None,
-            stylesheet: Optional[str] = None
+            stylesheet: Optional[str] = None,
+            *,
+            parent: Optional["QWidget"] = None,
     ) -> None:
-        super().__init__(__parent)
+        super().__init__(parent)
 
         self.mainLayout = QHBoxLayout()
         self.listWidget = QListWidget()

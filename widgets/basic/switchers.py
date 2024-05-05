@@ -25,10 +25,10 @@ class Splitter(QSplitter):
 
     def __init__(
             self, 
-            __orientation: str, 
-            size: tuple[int, int] = (30, 25),
+            __orientation: str,
+            *,
             stylesheet: Optional[str] = None,
-            *, parent: Optional["QWidget"] = None
+            parent: Optional["QWidget"] = None
     ) -> None:
         if __orientation == "horizontal": super().__init__(Qt.Orientation.Horizontal, parent)
         elif __orientation == "vertical": super().__init__(Qt.Orientation.Vertical, parent)
@@ -58,8 +58,9 @@ class DropDownMenu(QComboBox):
             self, 
             values: Optional[list[str]] = None, 
             size: tuple[int, int] = (200, 25),
+            *,
             stylesheet: Optional[str] = None,
-            *, parent: Optional["QWidget"] = None
+            parent: Optional["QWidget"] = None
     ) -> None:
         super().__init__(parent)
 
@@ -91,14 +92,27 @@ class Entry(QLineEdit):
     - __init__(__placed: str, placeholder: str = "", width: int = 200, height: int = 25): None - Initializes the text entry with default text and placeholder.
     """
 
-    def __init__(self, __placed: str = "", placeholder: str = "", width: int = 200, height: int = 25) -> None:
-        super().__init__()
+    def __init__(
+            self, 
+            placed: Optional[str] = None, 
+            placeholder: Optional[str] = None,
+            size: tuple[int, int] = (200, 25), 
+            *,
+            stylesheet: Optional[str] = None,
+            parent: Optional["QWidget"] = None
+    ) -> None:
+        super().__init__(parent)
 
-        self.setFixedSize(QSize(width, height))
-        self.setText(__placed)
-        self.setPlaceholderText(placeholder)
+        self.setFixedSize(QSize(*size))
+        if placed is not None: self.setText(placed)
+        if placeholder is not None: self.setPlaceholderText(placeholder)
 
-        self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/entry.css"))
+        if stylesheet is not None:
+            self.setStyleSheet(
+                Loader.load_file("scr/interface/basic/styles/splitter.css") + stylesheet
+            )
+        else:
+            self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/splitter.css"))
 
 
 class DigitalEntry(QSpinBox):
@@ -109,14 +123,28 @@ class DigitalEntry(QSpinBox):
     - __init__(__range: tuple[int, int], width: int = 30, height: int = 25, show_buttons: bool = False): None - Initializes the digital entry with a specified range, width, height, and button display.
     """
 
-    def __init__(self, __range: tuple[int, int], width: int = 30, height: int = 25, show_buttons: bool = False) -> None:
-        super().__init__()
+    def __init__(
+            self, 
+            range: tuple[int, int] = (0, 100), 
+            size: tuple[int, int] = (30, 25), 
+            show_buttons: bool = False,
+            *,
+            stylesheet: Optional[str] = None,
+            parent: Optional["QWidget"] = None
+    ) -> None:
+        super().__init__(parent)
 
-        self.setFixedSize(QSize(width, height))
+        self.setFixedSize(QSize(*size))
         if not show_buttons: self.setButtonSymbols(QSpinBox.ButtonSymbols.NoButtons)
 
-        self.setRange(*__range)
-        self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/digital_entry.css"))
+        self.setRange(*range)
+
+        if stylesheet is not None:
+            self.setStyleSheet(
+                Loader.load_file("scr/interface/basic/styles/splitter.css") + stylesheet
+            )
+        else:
+            self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/splitter.css"))
 
 
 class PathEntry(QWidget):
@@ -132,15 +160,28 @@ class PathEntry(QWidget):
     - This widget includes Entry and PushButton to specify the path to your file or directory
     """
 
-    def __init__(self, __placed: str = "", placeholder: str = "", width: int = 400, height: int = 25) -> None:
-        super().__init__()
+    def __init__(
+            self, 
+            placed: Optional[str] = None, 
+            placeholder: Optional[str] = None,
+            size: tuple[int, int] = (200, 25), 
+            *,
+            stylesheet: Optional[str] = None,
+            parent: Optional["QWidget"] = None
+    ) -> None:
+        super().__init__(parent)
 
         self.setObjectName("path-entry-widget")
-        self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/path_entry.css"))
+        if stylesheet is not None:
+            self.setStyleSheet(
+                Loader.load_file("scr/interface/basic/styles/splitter.css") + stylesheet
+            )
+        else:
+            self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/splitter.css"))
 
         self.mainLayout = QHBoxLayout()
 
-        self.pathEntry = Entry(__placed, placeholder, width, height)
+        self.pathEntry = Entry(placed, placeholder, size)
 
         self.specifyPathBtn = PushButton("...")
         self.specifyPathBtn.clicked.connect(lambda: self.set_path(FileDialog.get_open_file_name()))

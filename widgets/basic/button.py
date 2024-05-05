@@ -7,6 +7,7 @@ from typing import Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from PySide6.QtWidgets import QWidget
+    from PySide6.QtGui import QFont
 
 
 class PushButton(QPushButton):
@@ -14,11 +15,14 @@ class PushButton(QPushButton):
             self, 
             text: Optional[str] = None,
             size: tuple[int, int] = (100, 25),
+            font: Optional["QFont"] = None, 
             *,
             stylesheet: Optional[str] = None,
             parent: Optional["QWidget"] = None, 
     ) -> None:
         super().__init__(parent)
+
+        if font is not None: self.setFont(font)
 
         if stylesheet is not None:
             self.setStyleSheet(

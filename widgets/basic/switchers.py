@@ -9,13 +9,11 @@ from PySide6.QtCore import Qt, QSize
 
 from src.core import Loader, FileDialog, Font
 
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
+if TYPE_CHECKING:
+    from PySide6.QtGui import QFont
 
 from widgets.basic.button import PushButton
-
-
-###
-import random
 
 
 class Splitter(QSplitter):
@@ -64,6 +62,7 @@ class DropDownMenu(QComboBox):
             self, 
             values: Optional[list[str]] = None, 
             size: tuple[int, int] = (200, 25),
+            font: Optional["QFont"] = None, 
             *,
             stylesheet: Optional[str] = None,
             parent: Optional["QWidget"] = None
@@ -77,6 +76,7 @@ class DropDownMenu(QComboBox):
         if values is not None: self.__values = [*values]
         self.addItems(self.__values)
         self.setObjectName("drop-down-menu")
+        if font is not None: self.setFont(font)
 
         if stylesheet is not None:
             self.setStyleSheet(
@@ -103,15 +103,18 @@ class Entry(QLineEdit):
             placed: Optional[str] = None, 
             placeholder: Optional[str] = None,
             size: tuple[int, int] = (200, 25), 
+            font: Optional["QFont"] = None, 
             *,
             stylesheet: Optional[str] = None,
             parent: Optional["QWidget"] = None
     ) -> None:
         super().__init__(parent)
 
-        self.setFixedSize(QSize(*size))
         if placed is not None: self.setText(placed)
         if placeholder is not None: self.setPlaceholderText(placeholder)
+        if font is not None: self.setFont(font)
+
+        self.setFixedSize(QSize(*size))
         self.setObjectName("entry")
         self.setFocusPolicy(Qt.FocusPolicy.WheelFocus)
 
@@ -135,7 +138,8 @@ class DigitalEntry(QSpinBox):
             self, 
             range: tuple[int, int] = (0, 100), 
             size: tuple[int, int] = (30, 25), 
-            show_buttons: bool = False,
+            font: Optional["QFont"] = None, 
+            include_buttons: bool = False,
             *,
             stylesheet: Optional[str] = None,
             parent: Optional["QWidget"] = None
@@ -143,7 +147,8 @@ class DigitalEntry(QSpinBox):
         super().__init__(parent)
 
         self.setFixedSize(QSize(*size))
-        if not show_buttons: self.setButtonSymbols(QSpinBox.ButtonSymbols.NoButtons)
+        if not include_buttons: self.setButtonSymbols(QSpinBox.ButtonSymbols.NoButtons)
+        if font is not None: self.setFont(font)
 
         self.setObjectName("digital-entry")
         self.setRange(*range)
@@ -174,6 +179,7 @@ class PathEntry(QWidget):
             placed: Optional[str] = None, 
             placeholder: Optional[str] = None,
             size: tuple[int, int] = (200, 25), 
+            font: Optional["QFont"] = None, 
             *,
             stylesheet: Optional[str] = None,
             parent: Optional["QWidget"] = None
@@ -181,6 +187,8 @@ class PathEntry(QWidget):
         super().__init__(parent)
 
         self.setObjectName("path-entry")
+        if font is not None: self.setFont(font)
+        
         if stylesheet is not None:
             self.setStyleSheet(
                 Loader.load_file("scr/interface/basic/styles/splitter.css") + stylesheet

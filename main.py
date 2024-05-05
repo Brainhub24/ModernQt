@@ -27,7 +27,7 @@ class MainWindow(QWidget):
         self.mainLayout.addWidget(Entry())
         self.mainLayout.addWidget(DigitalEntry())
         self.mainLayout.addWidget(DropDownMenu(["std", "hello", "world"]))
-        self.mainLayout.addWidget(PushButton(text="Ok"), alignment=Qt.AlignmentFlag.AlignCenter)
+        self.mainLayout.addWidget(PushButton(text="Ok", stylesheet="background-color: lightgreen"), alignment=Qt.AlignmentFlag.AlignCenter)
         self.mainLayout.addWidget(PushButton(text="Cancel"), alignment=Qt.AlignmentFlag.AlignCenter)
         self.setLayout(self.mainLayout)
 

@@ -137,7 +137,7 @@ class DigitalEntry(QSpinBox):
     def __init__(
             self, 
             range: tuple[int, int] = (0, 100), 
-            size: tuple[int, int] = (30, 25), 
+            size: tuple[int, int] = (40, 25), 
             font: Optional["QFont"] = None, 
             include_buttons: bool = False,
             *,
@@ -155,10 +155,10 @@ class DigitalEntry(QSpinBox):
 
         if stylesheet is not None:
             self.setStyleSheet(
-                Loader.load_file("scr/interface/basic/styles/splitter.css") + stylesheet
+                Loader.load_file("./widgets/basic/styles/digital-entry.css") + stylesheet
             )
         else:
-            self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/splitter.css"))
+            self.setStyleSheet(Loader.load_file("./widgets/basic/styles/digital-entry.css"))
 
 
 class PathEntry(QWidget):

@@ -2,16 +2,19 @@ from PySide6.QtWidgets import (
     QApplication, QWidget, QHBoxLayout, QLabel
 )
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QIcon
 
 import sys
 
-from widgets import PushButton, WidgetsList, Entry, DropDownMenu
+from widgets import PushButton, WidgetsList, Entry, DropDownMenu, DigitalEntry
 from src.core import Font
 
 
 class MainWindow(QWidget):
     def __init__(self) -> None:
         super().__init__()
+
+        self.setWindowIcon(QIcon("Icon.png"))
 
         self.resize(1000, 600)
         self.setStyleSheet("background-color: #fbfbfb")
@@ -21,6 +24,7 @@ class MainWindow(QWidget):
         self.mainLayout = QHBoxLayout()
         # self.mainLayout.addWidget(self.widgetsList)
         self.mainLayout.addWidget(Entry())
+        self.mainLayout.addWidget(DigitalEntry())
         self.mainLayout.addWidget(DropDownMenu(["std", "hello", "world"]))
         self.mainLayout.addWidget(PushButton(text="Ok"), alignment=Qt.AlignmentFlag.AlignCenter)
         self.mainLayout.addWidget(PushButton(text="Cancel"), alignment=Qt.AlignmentFlag.AlignCenter)

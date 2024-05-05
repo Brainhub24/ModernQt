@@ -14,7 +14,8 @@ class PushButton(QPushButton):
             self, 
             __parent: Optional["QWidget"] = None, 
             text: Optional[str] = None,
-            size: tuple[int, int] = (100, 25)
+            size: tuple[int, int] = (100, 25),
+            stylesheet: Optional[str] = None
     ) -> None:
         super().__init__(__parent)
 
@@ -23,3 +24,6 @@ class PushButton(QPushButton):
 
         if text is not None:
             self.setText(text)
+        
+        if stylesheet is not None:
+            self.setStyleSheet(self.styleSheet() + stylesheet)

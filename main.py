@@ -16,11 +16,6 @@ class MainWindow(QWidget):
         self.setStyleSheet("background-color: #fbfbfb")
 
         self.widgetsList = WidgetsList()
-        self.widgetsList.addItem("Breakfast")
-        self.widgetsList.addItem("Breakfast")
-        self.widgetsList.addItem("Breakfast")
-        # self.widgetsList.add_widget(QLabel("Breakfast"))
-
 
         self.mainLayout = QHBoxLayout()
         self.mainLayout.addWidget(self.widgetsList)

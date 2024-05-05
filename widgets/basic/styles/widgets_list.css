@@ -5,12 +5,15 @@ QListWidget#widget-list {
     border: 1px solid gray;
 }
 
-QListWidget#widget-list::item {
-    outline: none;
-    color: #a3a3a3;
+QWidget#item {
+    border: 1px solid gray;
+    padding: 0;
+    height: 40px;
+    border-radius: 6px;
+    padding: 3px;
 }
 
-QListWidget#widget-list::item:selected {
+QWidget#item:hover {
     background-color: #deeaff;
     color: #0166fc;
 }

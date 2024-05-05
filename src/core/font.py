@@ -2,6 +2,8 @@ from PySide6.QtGui import QFontDatabase, QFont
 
 import os
 
+from .exceptions import FontNotFoundError, FontExistsError
+
 
 class Font:
 
@@ -38,6 +40,9 @@ class Font:
             QFont: The loaded font.
         """
 
+        if not os.path.exists(__path):
+            raise FontNotFoundError(f"There is no such font as '{__path}'")
+
         __id = QFontDatabase.addApplicationFont(__path)
         families = QFontDatabase.applicationFontFamilies(__id)
 
@@ -67,6 +72,9 @@ class Font:
         Returns:
             QFont: The requested font.
         """
+
+        if __family not in cls.get_all_font_families():
+            raise FontExistsError(f"There is no such font as '{__family}'")
 
         font = QFont(__family, __size, 1, __italic)
         font.setBold(__bold)

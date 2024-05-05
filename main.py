@@ -18,6 +18,8 @@ class MainWindow(QWidget):
 
         self.widgetsList = WidgetsList()
 
+        Font.get_system_font("hello", 10)
+
         self.mainLayout = QHBoxLayout()
         self.mainLayout.addWidget(self.widgetsList)
         self.mainLayout.addWidget(Entry())

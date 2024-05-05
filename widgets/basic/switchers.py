@@ -80,10 +80,10 @@ class DropDownMenu(QComboBox):
 
         if stylesheet is not None:
             self.setStyleSheet(
-                Loader.load_file("scr/interface/basic/styles/splitter.css") + stylesheet
+                Loader.load_file("./widgets/basic/styles/drop_down_menu.css") + stylesheet
             )
         else:
-            self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/splitter.css"))
+            self.setStyleSheet(Loader.load_file("./widgets/basic/styles/drop_down_menu.css"))
 
     def set_items(self, *__values: str) -> None:
         self.__values = [*__values]

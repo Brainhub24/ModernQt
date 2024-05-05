@@ -5,7 +5,7 @@ from PySide6.QtCore import Qt
 
 import sys
 
-from widgets import PushButton, WidgetsList, Entry
+from widgets import PushButton, WidgetsList, Entry, DropDownMenu
 from src.core import Font
 
 
@@ -18,11 +18,10 @@ class MainWindow(QWidget):
 
         self.widgetsList = WidgetsList()
 
-        Font.get_system_font("hello", 10)
-
         self.mainLayout = QHBoxLayout()
-        self.mainLayout.addWidget(self.widgetsList)
+        # self.mainLayout.addWidget(self.widgetsList)
         self.mainLayout.addWidget(Entry())
+        self.mainLayout.addWidget(DropDownMenu(["std", "hello", "world"]))
         self.mainLayout.addWidget(PushButton(text="Ok"), alignment=Qt.AlignmentFlag.AlignCenter)
         self.mainLayout.addWidget(PushButton(text="Cancel"), alignment=Qt.AlignmentFlag.AlignCenter)
         self.setLayout(self.mainLayout)

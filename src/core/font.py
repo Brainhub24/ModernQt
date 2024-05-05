@@ -74,7 +74,7 @@ class Font:
         """
 
         if __family not in cls.get_all_font_families():
-            raise FontExistsError(f"There is no such font as '{__family}'")
+            raise FontExistsError(f"There is no such system font as '{__family}'")
 
         font = QFont(__family, __size, 1, __italic)
         font.setBold(__bold)

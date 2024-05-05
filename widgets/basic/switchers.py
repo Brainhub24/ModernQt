@@ -54,16 +54,29 @@ class DropDownMenu(QComboBox):
     - set_items(*__values: str): None - Sets the items in the drop-down menu.
     """
 
-    def __init__(self, *__values: str, width: int = 200, height: int = 25) -> None:
-        super().__init__()
+    def __init__(
+            self, 
+            values: Optional[list[str]] = None, 
+            size: tuple[int, int] = (200, 25),
+            stylesheet: Optional[str] = None,
+            *, parent: Optional["QWidget"] = None
+    ) -> None:
+        super().__init__(parent)
 
-        self.setFixedSize(QSize(width, height))
+        self.setFixedSize(QSize(*size))
         self.view().setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.__values = []
 
-        self.__values = [*__values]
+        if values is not None:
+            self.__values = [*values]
         self.addItems(self.__values)
 
-        self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/drop_down_menu.css"))
+        if stylesheet is not None:
+            self.setStyleSheet(
+                Loader.load_file("scr/interface/basic/styles/splitter.css") + stylesheet
+            )
+        else:
+            self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/splitter.css"))
 
     def set_items(self, *__values: str) -> None:
         self.__values = [*__values]

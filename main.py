@@ -5,7 +5,7 @@ from PySide6.QtCore import Qt
 
 import sys
 
-from widgets import PushButton, WidgetsList
+from widgets import PushButton, WidgetsList, Entry
 from src.core import Font
 
 
@@ -20,7 +20,9 @@ class MainWindow(QWidget):
 
         self.mainLayout = QHBoxLayout()
         self.mainLayout.addWidget(self.widgetsList)
-        self.mainLayout.addWidget(PushButton(text="Button"), alignment=Qt.AlignmentFlag.AlignCenter)
+        self.mainLayout.addWidget(Entry())
+        self.mainLayout.addWidget(PushButton(text="Ok"), alignment=Qt.AlignmentFlag.AlignCenter)
+        self.mainLayout.addWidget(PushButton(text="Cancel"), alignment=Qt.AlignmentFlag.AlignCenter)
         self.setLayout(self.mainLayout)
 
 

@@ -7,11 +7,15 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtCore import Qt, QSize
 
-from src.core import Loader, FileDialog
+from src.core import Loader, FileDialog, Font
 
 from typing import Optional
 
 from widgets.basic.button import PushButton
+
+
+###
+import random
 
 
 class Splitter(QSplitter):
@@ -109,13 +113,14 @@ class Entry(QLineEdit):
         if placed is not None: self.setText(placed)
         if placeholder is not None: self.setPlaceholderText(placeholder)
         self.setObjectName("entry")
+        self.setFocusPolicy(Qt.FocusPolicy.WheelFocus)
 
         if stylesheet is not None:
             self.setStyleSheet(
-                Loader.load_file("scr/interface/basic/styles/splitter.css") + stylesheet
+                Loader.load_file("./widgets/basic/styles/entry.css") + stylesheet
             )
         else:
-            self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/splitter.css"))
+            self.setStyleSheet(Loader.load_file("./widgets/basic/styles/entry.css"))
 
 
 class DigitalEntry(QSpinBox):

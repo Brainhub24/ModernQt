@@ -3,7 +3,7 @@ import os.path
 from PySide6.QtWidgets import (
     QSplitter, QComboBox, QSpinBox, 
     QLineEdit, QWidget, QHBoxLayout, 
-    QSpacerItem, QSizePolicy
+    QSpacerItem, QSizePolicy, QCheckBox
 )
 from PySide6.QtCore import Qt, QSize
 
@@ -155,6 +155,30 @@ class DigitalEntry(QSpinBox):
         self.setObjectName("digital-entry")
         self.setRange(*range)
 
+        if stylesheet is not None:
+            self.setStyleSheet(
+                Loader.load_file("./widgets/basic/styles/digital-entry.css") + "\n" 
+                + "QSpinBox#digital-entry {" + stylesheet + "}\n"
+            )
+        else:
+            self.setStyleSheet(Loader.load_file("./widgets/basic/styles/digital-entry.css"))
+
+
+class CheckBox(QCheckBox):
+    def __init__(
+            self,
+            text: Optional[str] = None,
+            size: tuple[int, int] = (150, 30),
+            *,
+            stylesheet: Optional[str] = None,
+            parent: Optional["QWidget"] = None
+    ) -> None:
+        super().__init__(parent)
+
+        self.setFixedSize(QSize(*size))
+        if text is not None:
+            self.setText(text)
+        
         if stylesheet is not None:
             self.setStyleSheet(
                 Loader.load_file("./widgets/basic/styles/digital-entry.css") + "\n" 

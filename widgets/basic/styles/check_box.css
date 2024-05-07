@@ -1,0 +1,17 @@
+QCheckBox#check-box {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 3px;
+    border-radius: 6px;
+    border: none
+}
+
+QCheckBox#check-box::indicator {
+    padding: 3px;
+    border-radius: 3px;
+    border: 1px solid #0166fc;
+}
+
+QCheckBox#check-box::indicator:checked {
+    background-color: #0166fc;
+}

@@ -157,11 +157,11 @@ class DigitalEntry(QSpinBox):
 
         if stylesheet is not None:
             self.setStyleSheet(
-                Loader.load_file("./widgets/basic/styles/digital-entry.css") + "\n" 
+                Loader.load_file("./widgets/basic/styles/digital_entry.css") + "\n" 
                 + stylesheet.replace("DigitalEntry", "QSpinBox#digital-entry")
             )
         else:
-            self.setStyleSheet(Loader.load_file("./widgets/basic/styles/digital-entry.css"))
+            self.setStyleSheet(Loader.load_file("./widgets/basic/styles/digital_entry.css"))
 
 
 class CheckBox(QCheckBox):
@@ -182,11 +182,11 @@ class CheckBox(QCheckBox):
         
         if stylesheet is not None:
             self.setStyleSheet(
-                Loader.load_file("./widgets/basic/styles/digital-entry.css") + "\n" 
+                Loader.load_file("./widgets/basic/styles/check_box.css") + "\n" 
                 + stylesheet.replace("CheckBox", "QCheckBox#check-box")
             )
         else:
-            self.setStyleSheet(Loader.load_file("./widgets/basic/styles/digital-entry.css"))
+            self.setStyleSheet(Loader.load_file("./widgets/basic/styles/check_box.css"))
 
 
 class PathEntry(QWidget):

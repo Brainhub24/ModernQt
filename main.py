@@ -6,7 +6,7 @@ from PySide6.QtGui import QIcon
 
 import sys
 
-from widgets import PushButton, WidgetsList, Entry, DropDownMenu, DigitalEntry
+from widgets import *
 from src.core import Font
 
 
@@ -23,12 +23,8 @@ class MainWindow(QWidget):
         self.widgetsList = WidgetsList()
 
         self.mainLayout = QHBoxLayout()
-        # self.mainLayout.addWidget(self.widgetsList)
-        self.mainLayout.addWidget(Entry(stylesheet="Entry:hover {background-color: lightgreen;}"))
-        self.mainLayout.addWidget(DigitalEntry())
-        self.mainLayout.addWidget(DropDownMenu(["std", "hello", "world"]))
-        self.mainLayout.addWidget(PushButton(text="Ok", stylesheet="PushButton:pressed {background-color: lightgreen;}"), alignment=Qt.AlignmentFlag.AlignCenter)
-        self.mainLayout.addWidget(PushButton(text="Cancel"), alignment=Qt.AlignmentFlag.AlignCenter)
+        self.mainLayout.addWidget(CheckBox("Is play"))
+
         self.setLayout(self.mainLayout)
 
 

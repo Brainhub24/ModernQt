@@ -27,7 +27,7 @@ class PushButton(QPushButton):
         if stylesheet is not None:
             self.setStyleSheet(
                 Loader.load_file("./widgets/basic/styles/button.css") + "\n" 
-                + "QPushButton#button {" + stylesheet + "}\n"
+                + stylesheet.replace("PushButton", "QPushButton#button")
             )
         else:
             self.setStyleSheet(Loader.load_file("./widgets/basic/styles/button.css")) # ./widgets/basic/styles/push_button.css

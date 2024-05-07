@@ -81,7 +81,7 @@ class DropDownMenu(QComboBox):
         if stylesheet is not None:
             self.setStyleSheet(
                 Loader.load_file("./widgets/basic/styles/drop_down_menu.css") + "\n" 
-                + "QComboBox#drop-down-menu {" + stylesheet + "}\n"
+                + stylesheet.replace("DropDownMenu", "QComboBox#drop-down-menu")
             )
         else:
             self.setStyleSheet(Loader.load_file("./widgets/basic/styles/drop_down_menu.css"))
@@ -122,7 +122,7 @@ class Entry(QLineEdit):
         if stylesheet is not None:
             self.setStyleSheet(
                 Loader.load_file("./widgets/basic/styles/entry.css") + "\n" 
-                + "QLineEdit#entry {" + stylesheet + "}\n"
+                + stylesheet.replace("Entry", "QLineEdit#entry")
             )
         else:
             self.setStyleSheet(Loader.load_file("./widgets/basic/styles/entry.css"))
@@ -158,7 +158,7 @@ class DigitalEntry(QSpinBox):
         if stylesheet is not None:
             self.setStyleSheet(
                 Loader.load_file("./widgets/basic/styles/digital-entry.css") + "\n" 
-                + "QSpinBox#digital-entry {" + stylesheet + "}\n"
+                + stylesheet.replace("DigitalEntry", "QSpinBox#digital-entry")
             )
         else:
             self.setStyleSheet(Loader.load_file("./widgets/basic/styles/digital-entry.css"))
@@ -176,13 +176,14 @@ class CheckBox(QCheckBox):
         super().__init__(parent)
 
         self.setFixedSize(QSize(*size))
+        self.setObjectName("check-box")
         if text is not None:
             self.setText(text)
         
         if stylesheet is not None:
             self.setStyleSheet(
                 Loader.load_file("./widgets/basic/styles/digital-entry.css") + "\n" 
-                + "QSpinBox#digital-entry {" + stylesheet + "}\n"
+                + stylesheet.replace("CheckBox", "QCheckBox#check-box")
             )
         else:
             self.setStyleSheet(Loader.load_file("./widgets/basic/styles/digital-entry.css"))
@@ -219,7 +220,7 @@ class PathEntry(QWidget):
         if stylesheet is not None:
             self.setStyleSheet(
                 Loader.load_file("./widgets/basic/styles/entry.css") + "\n" 
-                + "QLineEdit#path-entry {" + stylesheet + "}\n"
+                + stylesheet.replace("PathEntry", "QLineEdit#path-entry")
             )
         else:
             self.setStyleSheet(Loader.load_file("scr/interface/basic/styles/splitter.css"))

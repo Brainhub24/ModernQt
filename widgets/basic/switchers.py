@@ -170,6 +170,9 @@ class CheckBox(QCheckBox):
             self,
             text: Optional[str] = None,
             size: tuple[int, int] = (150, 30),
+            is_checkable: bool = True,
+            is_checked: bool = False,
+            is_disabled: bool = False,
             *,
             stylesheet: Optional[str] = None,
             parent: Optional["QWidget"] = None
@@ -177,6 +180,10 @@ class CheckBox(QCheckBox):
         super().__init__(parent)
 
         self.setFixedSize(QSize(*size))
+        self.setChecked(is_checked)
+        self.setCheckable(is_checkable)
+        self.setDisabled(is_disabled)
+
         self.setObjectName("check-box")
         if text is not None:
             self.setText(text)

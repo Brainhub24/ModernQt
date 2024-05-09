@@ -25,7 +25,7 @@ class MainWindow(QWidget):
         self.mainLayout = QHBoxLayout()
         self.mainLayout.addWidget(RadioButton("Hello"))
         self.mainLayout.addWidget(RadioButton("Hello"))
-        self.mainLayout.addWidget(CheckBox("Is play"))
+        self.mainLayout.addWidget(CheckBox("Is play", is_checked=True, is_disabled=True))
 
         self.setLayout(self.mainLayout)
 

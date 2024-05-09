@@ -12,6 +12,18 @@ QCheckBox#check-box::indicator {
     border: 1px solid #0166fc;
 }
 
-QCheckBox#check-box::indicator:checked {
+QCheckBox#check-box::indicator:checked:enabled {
     background-color: #0166fc;
+}
+
+QCheckBox#check-box::indicator:checked:disabled {
+    background-color: lightgray;
+}
+
+QCheckBox#check-box:disabled {
+    color: gray;
+}
+
+QCheckBox#check-box::indicator:disabled {
+    border-color: lightslategray;
 }

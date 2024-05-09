@@ -3,7 +3,8 @@ import os.path
 from PySide6.QtWidgets import (
     QSplitter, QComboBox, QSpinBox, 
     QLineEdit, QWidget, QHBoxLayout, 
-    QSpacerItem, QSizePolicy, QCheckBox
+    QSpacerItem, QSizePolicy, QCheckBox,
+    QRadioButton
 )
 from PySide6.QtCore import Qt, QSize
 
@@ -248,3 +249,27 @@ class PathEntry(QWidget):
 
     def get_entry(self) -> Entry:
         return self.pathEntry
+    
+
+class RadioButton(QRadioButton):
+    def __init__(
+            self,
+            text: Optional[str] = None,
+            size: tuple[int, int] = (200, 30),
+            *,
+            stylesheet: Optional[str] = None,
+            parent: Optional["QWidget"] = None
+    ) -> None:
+        super().__init__(parent)
+
+        if text is not None: self.setText(text)
+        self.setFixedSize(QSize(*size))
+
+        self.setObjectName("radio-button")
+        if stylesheet is not None:
+            self.setStyleSheet(
+                Loader.load_file("./widgets/basic/styles/radio_button.css") + "\n" 
+                + stylesheet.replace("RadioButton", "QRaidoButton#radio-button")
+            )
+        else:
+            self.setStyleSheet(Loader.load_file("./widgets/basic/styles/radio_button.css"))

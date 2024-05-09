@@ -3,5 +3,5 @@ from .basic.widgets_list import WidgetsList
 
 from .basic.switchers import (
     Entry, DropDownMenu, DigitalEntry, 
-    CheckBox, PathEntry, Splitter
+    CheckBox, PathEntry, Splitter, RadioButton
 )
